@@ -13,9 +13,10 @@ Eigenständig entwickelt neben meiner Umschulung zum Fachinformatiker für Anwen
 ![Übersicht](uebersicht.png)
 Alle verfügbaren Fahrzeuge auf einen Blick, inklusive Kennzeichen und Kennzeichnung von Elektrofahrzeugen.
 
-### Buchung — Mitarbeiterauswahl
+### Buchung — Mitarbeiter- und Fahrzeugauswahl
 ![Mitarbeiterauswahl](mitarbeiter_auswahl.png)
-Dynamisches Dropdown, direkt aus der Datenbank befüllt — alle Mitarbeiter sind live abrufbar.
+![Fahrzeugauswahl](fahrzeug_auswahl.png)
+Beide Dropdowns werden dynamisch direkt aus der Datenbank befüllt — Mitarbeiter samt Abteilung, Fahrzeuge samt Kennzeichen und Modell sind live abrufbar.
 
 ### Geschäftslogik — Automatische Validierung
 ![Validierung](validierung.png)
