@@ -13,6 +13,10 @@ Eigenständig entwickelt neben meiner Umschulung zum Fachinformatiker für Anwen
 ![Übersicht](uebersicht.png)
 Alle verfügbaren Fahrzeuge auf einen Blick, inklusive Kennzeichen und Kennzeichnung von Elektrofahrzeugen.
 
+### Kernfeature — Live-Buchungsübersicht mit Zeitanzeige
+![Kreisbalken](kreisbalken.png)
+Animierte SVG-Kreisbalken zeigen die verbleibende Buchungsdauer in Echtzeit — Farbe (grün → türkis → blau) signalisiert auf einen Blick, wie dringend ein Fahrzeug bald wieder verfügbar wird.
+
 ### Buchung — Mitarbeiterauswahl
 ![Mitarbeiterauswahl](mitarbeiter_auswahl.png)
 Dynamisches Dropdown, direkt aus der Datenbank befüllt — alle Mitarbeiter sind live abrufbar.
@@ -21,9 +25,6 @@ Dynamisches Dropdown, direkt aus der Datenbank befüllt — alle Mitarbeiter sin
 ![Validierung](validierung.png)
 Das System verhindert eigenständig Buchungen über 7 Tage hinaus — Geschäftsregeln direkt im Frontend abgesichert.
 
-### Kernfeature — Live-Buchungsübersicht mit Zeitanzeige
-![Kreisbalken](kreisbalken.png)
-Animierte SVG-Kreisbalken zeigen die verbleibende Buchungsdauer in Echtzeit — Farbe (grün → türkis → blau) signalisiert auf einen Blick, wie dringend ein Fahrzeug bald wieder verfügbar wird.
 
 ## 🛠️ Technologie-Stack
 
