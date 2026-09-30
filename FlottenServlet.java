@@ -1,5 +1,5 @@
-import jakarta.servlet.http.*;
-import jakarta.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.*;
 import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;

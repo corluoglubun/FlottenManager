@@ -2,7 +2,7 @@
 
 Eine Java-Anwendung zur Verwaltung von Firmenfahrzeugen, Mitarbeitern und Fahrzeugbuchungen. Die Daten werden dauerhaft in einer MariaDB-Datenbank gespeichert.
 
-Das Projekt enthält sowohl eine Konsolenanwendung als auch eine browserbasierte Oberfläche mit Jakarta Servlets.
+Das Projekt enthält sowohl eine Konsolenanwendung als auch eine browserbasierte Oberfläche mit Java Servlets (`javax.servlet`).
 
 ## Funktionen
 
@@ -18,10 +18,11 @@ Das Projekt enthält sowohl eine Konsolenanwendung als auch eine browserbasierte
 ## Verwendete Technik
 
 - Java
-- Jakarta Servlet API
+- Java Servlet API (`javax.servlet`)
 - MariaDB
 - MariaDB JDBC-Treiber
-- Apache Tomcat
+- Apache Tomcat 8.5
+- XAMPP
 - HTML und CSS innerhalb des Servlets
 
 ## Voraussetzungen
@@ -33,9 +34,7 @@ Für die Konsolenanwendung werden benötigt:
 - eine Datenbank namens `flottenmanager`
 - MariaDB auf Port `3307`
 
-Für die Weboberfläche wird zusätzlich ein Server benötigt, der Jakarta Servlets unterstützt, beispielsweise Apache Tomcat 10.1 oder neuer.
-
-Der in älteren XAMPP-Versionen enthaltene Tomcat verwendet möglicherweise noch `javax.servlet` und ist dann nicht mit dem vorhandenen Jakarta-Code kompatibel.
+Für die Weboberfläche wird zusätzlich Apache Tomcat 8.5 benötigt. Das Projekt ist mit dem in XAMPP enthaltenen Tomcat 8.5 und `javax.servlet` kompatibel.
 
 ## Datenbankverbindung
 
@@ -57,12 +56,22 @@ FLOTTEN_DB_PASSWORD
 
 Dadurch müssen persönliche Zugangsdaten nicht im Quellcode gespeichert werden.
 
+## Datenbank einrichten
+
+Das Datenbankschema befindet sich in:
+
+```text
+database/schema.sql
+```
+
+Die Datei kann in MariaDB beziehungsweise phpMyAdmin importiert werden, um die benötigten Tabellen anzulegen.
+
 ## Konsolenanwendung kompilieren
 
 Vom Projektordner aus:
 
 ```powershell
-javac -cp "lib/*" Buchung.java DatenbankManager.java Fahrzeug.java Flottenverwaltung.java Main.java Mitarbeiter.java
+javac -encoding UTF-8 -cp "lib/*" Buchung.java DatenbankManager.java Fahrzeug.java Flottenverwaltung.java Main.java Mitarbeiter.java
 ```
 
 Anschließend kann die Anwendung gestartet werden:
@@ -75,12 +84,40 @@ java -cp ".;lib/*" Main
 
 Die Weboberfläche befindet sich in `FlottenServlet.java`. Sie bietet eine grafische Übersicht über verfügbare und gebuchte Fahrzeuge sowie Formulare zum Anlegen und Buchen von Fahrzeugen.
 
-Für den Betrieb muss das Servlet mit Jakarta Servlet API und einem kompatiblen Tomcat-Server bereitgestellt werden.
+Die Servlet-Konfiguration befindet sich in:
+
+```text
+webapp/WEB-INF/web.xml
+```
+
+Für den lokalen Betrieb wird die Anwendung unter folgendem Tomcat-Verzeichnis bereitgestellt:
+
+```text
+C:\xampp\tomcat\webapps\flotten
+```
+
+Der MariaDB-JDBC-Treiber muss für Tomcat verfügbar sein, beispielsweise unter:
+
+```text
+C:\xampp\tomcat\lib\mariadb-java-client-3.5.9.jar
+```
+
+Anschließend werden in XAMPP `MySQL` und `Tomcat` gestartet. Die Weboberfläche ist dann unter folgender Adresse erreichbar:
+
+```text
+http://localhost:8080/flotten/fahrzeuge
+```
 
 ## Projektstruktur
 
 ```text
 FlottenManager/
+├── database/
+│   └── schema.sql
+├── lib/
+├── webapp/
+│   └── WEB-INF/
+│       └── web.xml
 ├── Buchung.java
 ├── DatenbankManager.java
 ├── Fahrzeug.java
@@ -88,7 +125,6 @@ FlottenManager/
 ├── Flottenverwaltung.java
 ├── Main.java
 ├── Mitarbeiter.java
-├── lib/
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -98,7 +134,9 @@ FlottenManager/
 
 GitHub Pages kann nur statische Webseiten ausliefern. Da dieses Projekt Java, Tomcat und MariaDB benötigt, kann die Webanwendung nicht direkt über GitHub Pages betrieben werden.
 
-Das öffentliche GitHub-Repository dokumentiert den Quellcode und die Entwicklung des Projekts. Für eine öffentlich erreichbare Live-Version wäre später ein Java-Server mit Datenbank erforderlich.
+Das öffentliche GitHub-Repository dokumentiert den Quellcode und die Entwicklung des Projekts. Die Adresse mit `localhost` ist nur auf dem eigenen Computer erreichbar.
+
+Für eine öffentlich erreichbare Live-Version wird ein externer Java-Server mit einer erreichbaren Datenbank benötigt.
 
 ## Screenshots
 
