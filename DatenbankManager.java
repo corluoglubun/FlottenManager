@@ -4,10 +4,21 @@ import java.sql.SQLException;
 
 public class DatenbankManager {
 
-    // Verbindungsdaten zur Datenbank
-    private static final String URL = "jdbc:mariadb://localhost:3307/flottenmanager";
-    private static final String USER = "root";
-    private static final String PASSWORD = ""; // dein XAMPP Passwort
+    // Lokale Standardwerte können über Umgebungsvariablen überschrieben werden.
+    private static final String URL = System.getenv().getOrDefault(
+            "FLOTTEN_DB_URL",
+            "jdbc:mariadb://localhost:3307/flottenmanager"
+    );
+
+    private static final String USER = System.getenv().getOrDefault(
+            "FLOTTEN_DB_USER",
+            "root"
+    );
+
+    private static final String PASSWORD = System.getenv().getOrDefault(
+            "FLOTTEN_DB_PASSWORD",
+            ""
+    );
 
     private static Connection verbindung = null;
 
@@ -18,9 +29,12 @@ public class DatenbankManager {
                 verbindung = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println("Datenbankverbindung erfolgreich!");
             } catch (SQLException e) {
-                System.out.println("Fehler bei Datenbankverbindung: " + e.getMessage());
+                System.out.println(
+                        "Fehler bei der Datenbankverbindung: " + e.getMessage()
+                );
             }
         }
+
         return verbindung;
     }
 
@@ -31,10 +45,13 @@ public class DatenbankManager {
                 verbindung.close();
                 verbindung = null;
                 System.out.println("Datenbankverbindung geschlossen.");
-           } catch (SQLException e) {
-    System.out.println("Fehler bei Datenbankverbindung: " + e.getMessage());
-    e.printStackTrace();
-}
+            } catch (SQLException e) {
+                System.out.println(
+                        "Fehler beim Schließen der Datenbankverbindung: "
+                                + e.getMessage()
+                );
+                e.printStackTrace();
+            }
         }
     }
 }
